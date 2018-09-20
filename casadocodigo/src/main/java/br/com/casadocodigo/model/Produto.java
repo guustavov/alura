@@ -1,6 +1,9 @@
 package br.com.casadocodigo.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.List;
 
 @Entity
@@ -15,6 +18,9 @@ public class Produto {
 
     @ElementCollection
     private List<Preco> precos;
+
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Calendar dataLancamento;
 
 
     public List<Preco> getPrecos() {
