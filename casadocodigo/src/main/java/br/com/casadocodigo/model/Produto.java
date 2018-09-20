@@ -19,9 +19,16 @@ public class Produto {
     @ElementCollection
     private List<Preco> precos;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat
     private Calendar dataLancamento;
 
+    public Calendar getDataLancamento() {
+        return dataLancamento;
+    }
+
+    public void setDataLancamento(Calendar dataLancamento) {
+        this.dataLancamento = dataLancamento;
+    }
 
     public List<Preco> getPrecos() {
         return precos;
