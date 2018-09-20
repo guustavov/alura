@@ -7,6 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,21 +18,25 @@
 </head>
 <body>
 
-    <form action="/produtos" method="post">
+    <form:form action="${s:mvcUrl('PC#gravar').build()}" method="post" commandName="produto">
         <div>
             <label>Titulo
                 <input type="text" name="titulo">
             </label>
+            <form:errors path="titulo" />
         </div>
         <div>
+
             <label>Descrição
                 <textarea name="descricao" id="" cols="20" rows="10"></textarea>
             </label>
+            <form:errors path="descricao" />
         </div>
         <div>
             <label>Páginas
                 <input type="number" name="paginas">
             </label>
+            <form:errors path="paginas" />
         </div>
 
         <c:forEach items="${tipos}" var="tipoPreco" varStatus="status">
@@ -43,7 +50,7 @@
 
         <button type="submit">Cadastrar</button>
 
-    </form>
+    </form:form>
 
 </body>
 </html>

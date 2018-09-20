@@ -14,17 +14,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("produtos")
+@RequestMapping(value = "/produtos")
 public class ProdutosController {
 
     @Autowired
     ProdutoDAO produtoDao;
 
     @InitBinder
-    public void initBinder(WebDataBinder binder){
+    public void InitBinder(WebDataBinder binder){
         binder.addValidators(new ProdutoValidation());
     }
 
@@ -37,7 +38,7 @@ public class ProdutosController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView gravar(Produto produto, BindingResult result, RedirectAttributes redirectAttributes){
+    public ModelAndView gravar(@Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes){
 
         if(result.hasErrors()){
             return form();
@@ -47,7 +48,7 @@ public class ProdutosController {
 
         redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso!");
 
-        return new ModelAndView("redirect:produtos");
+        return new ModelAndView("redirect:/produtos");
     }
 
     @RequestMapping(method = RequestMethod.GET)
