@@ -41,14 +41,14 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     }
 
     @Bean
-    public FormattingConversionService mvcConvertionService(){
-        DefaultFormattingConversionService convertionService = new DefaultFormattingConversionService();
+    public FormattingConversionService mvcConversionService(){
+        DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
 
         DateFormatterRegistrar registrar = new DateFormatterRegistrar();
         registrar.setFormatter(new DateFormatter("dd/MM/yyyy"));
-        registrar.registerFormatters(convertionService);
+        registrar.registerFormatters(conversionService);
 
-        return convertionService;
+        return conversionService;
 
     }
 }
