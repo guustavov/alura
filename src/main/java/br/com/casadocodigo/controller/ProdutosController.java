@@ -23,7 +23,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/produtos")
+@RequestMapping(value = "/produtos", produces = "text/plain;charset=UTF-8")
 public class ProdutosController {
 
     @Autowired
