@@ -46,14 +46,12 @@ public class ProdutosController {
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView gravar(MultipartFile sumario, @Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes){
 
-        System.out.println(sumario.getOriginalFilename());
-
-        String path = fileSaver.write("arquivos-sumario", sumario);
-        produto.setSumarioPath(path);
-
         if(result.hasErrors()){
             return form(produto);
         }
+
+        String path = fileSaver.write("arquivos-sumario", sumario);
+        produto.setSumarioPath(path);
 
         produtoDao.gravar(produto);
 
