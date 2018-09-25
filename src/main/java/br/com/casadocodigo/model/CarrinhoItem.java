@@ -1,7 +1,8 @@
 package br.com.casadocodigo.model;
 
-public class CarrinhoItem {
+import java.math.BigDecimal;
 
+public class CarrinhoItem {
 
     private Produto produto;
     private TipoPreco tipoPreco;
@@ -43,5 +44,13 @@ public class CarrinhoItem {
         int result = produto != null ? produto.hashCode() : 0;
         result = 31 * result + (tipoPreco != null ? tipoPreco.hashCode() : 0);
         return result;
+    }
+
+    public BigDecimal getPreco(){
+        return produto.getPrecoPorTipoPreco(tipoPreco);
+    }
+
+    public BigDecimal getTotal(int quantidade) {
+        return this.getPreco().multiply(new BigDecimal(quantidade));
     }
 }
