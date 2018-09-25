@@ -85,14 +85,14 @@
 													  width="71px" height="100px" />
 						</td>
 						<td class="item-title">${item.produto.titulo}</td>
-						<td class="numeric-cell">${item.preco}}</td>
+						<td class="numeric-cell">${item.preco}</td>
 						<td class="quantity-input-cell">
 							<input type="number" min="0" id="quantidade" name="quantidade" value="${carrinho.getQuantidade(item)}" />
 						</td>
 						<td class="numeric-cell">${carrinho.getTotal(item)}</td>
 						<td class="remove-item">
 							<form action="" method="POST">
-								<input type="image" src="${contextPath }/resources/imagens/excluir.png"
+								<input type="image" src="${contextPath}resources/imagens/excluir.png"
 									   alt="Excluir" title="Excluir" />
 							</form>
 						</td>
