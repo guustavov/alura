@@ -7,6 +7,7 @@ import br.com.casadocodigo.model.TipoPreco;
 import br.com.casadocodigo.validation.ProdutoValidation;
 import com.sun.org.apache.xpath.internal.operations.Mult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -46,6 +47,7 @@ public class ProdutosController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
+    @CacheEvict(value = "produtosHome", allEntries = true)
     public ModelAndView gravar(MultipartFile sumario, @Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes){
 
         if(result.hasErrors()){
