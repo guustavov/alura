@@ -18,6 +18,7 @@
     <h1>Lista de livros</h1>
 
     <div>${sucesso}</div>
+    <div>${falha}</div>
 
     <table>
         <tr>

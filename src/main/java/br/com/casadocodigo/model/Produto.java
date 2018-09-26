@@ -3,11 +3,13 @@ package br.com.casadocodigo.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.List;
 
 @Entity
-public class Produto {
+public class Produto implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -81,6 +83,29 @@ public class Produto {
         this.sumarioPath = sumarioPath;
     }
 
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Produto other = (Produto) obj;
+        if (id != other.id)
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + id;
+        return result;
+    }
+
     @Override
     public String toString() {
         return "Produto{" +
@@ -88,5 +113,10 @@ public class Produto {
                 ", descricao='" + descricao + '\'' +
                 ", paginas=" + paginas +
                 '}';
+    }
+
+    public BigDecimal getPrecoPorTipoPreco(TipoPreco tipoPreco) {
+        return precos.stream().filter(preco -> preco.getTipo().equals(tipoPreco))
+                .findFirst().get().getValor(); //expressão lambda (?)
     }
 }

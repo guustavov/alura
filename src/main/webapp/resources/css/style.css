@@ -588,7 +588,7 @@ h3,h1{
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4994a', endColorstr='#ef7000',GradientType=0 ); /* IE6-9 */
 
     background-position: 0 0;
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;
     font-family: "Droid Sans", Sans-serif;
     font-weight: 100;
 }

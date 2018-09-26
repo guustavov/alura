@@ -18,8 +18,9 @@ public class FileSaver {
         try {
             String realPath = request.getServletContext().getRealPath("/" + baseFolder);
             String path = realPath + "/" + file.getOriginalFilename();
-            file.transferTo(new File(path));
-
+            if(!file.isEmpty()) {
+                file.transferTo(new File(path));
+            }
             return baseFolder + "/" + file.getOriginalFilename();
 
         } catch (IOException e) {
