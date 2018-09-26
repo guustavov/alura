@@ -14,6 +14,8 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.concurrent.Callable;
+
 @Controller
 @RequestMapping(value = "/pagamento")
 @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode= ScopedProxyMode.TARGET_CLASS)
@@ -26,19 +28,23 @@ public class PagamentoController {
     private RestTemplate restTemplate;
 
     @RequestMapping(value = "/finalizar", method = RequestMethod.POST)
-    public ModelAndView finalizar(RedirectAttributes model){
-        try {
-            String uri = "http://book-payment.herokuapp.com/payment";
-            String response = restTemplate.postForObject(uri, new DadosPagamento(carrinho.getTotal()), String.class);
+    public Callable<ModelAndView> finalizar(RedirectAttributes model){
 
-            model.addFlashAttribute("sucesso", response);
-            System.out.println(response);
+        return () -> {
+            try {
+                String uri = "http://book-payment.herokuapp.com/payment";
+                String response = restTemplate.postForObject(uri, new DadosPagamento(carrinho.getTotal()), String.class);
 
-            return new ModelAndView("redirect:/produtos");
-        } catch (RestClientException e) {
-            e.printStackTrace();
-            model.addFlashAttribute("falha", "Valor maior que o permitido (R$500,00)!");
-            return new ModelAndView("redirect:/produtos");
-        }
+                model.addFlashAttribute("sucesso", response);
+                System.out.println(response);
+
+                return new ModelAndView("redirect:/produtos");
+            } catch (RestClientException e) {
+                e.printStackTrace();
+                model.addFlashAttribute("falha", "Valor maior que o permitido (R$500,00)!");
+                return new ModelAndView("redirect:/produtos");
+            }
+        };
+
     }
 }
