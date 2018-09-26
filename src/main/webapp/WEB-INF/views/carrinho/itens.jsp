@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html>
@@ -60,6 +61,9 @@
 
 	<section class="container middle">
 		<h2 id="cart-title">Seu carrinho de compras</h2>
+
+		<div>${sucesso}</div>
+
 		<table id="cart-table">
 			<colgroup>
 				<col class="item-col" />
@@ -91,7 +95,7 @@
 						</td>
 						<td class="numeric-cell">${carrinho.getTotal(item)}</td>
 						<td class="remove-item">
-							<form action="" method="POST">
+							<form action="${s:mvcUrl('CC#remover').arg(0,item.produto.id).arg(1,item.tipoPreco).build()}" method="POST">
 								<input type="image" src="${contextPath}resources/imagens/excluir.png"
 									   alt="Excluir" title="Excluir" />
 							</form>
@@ -101,7 +105,11 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="3"><input type="submit" class="checkout" name="checkout" value="Finalizar compra" /></td>
+					<td colspan="3">
+						<form:form action="${s:mvcUrl('PC#finalizar').build()}" method="post">
+							<input type="submit" class="checkout" name="checkout" value="Finalizar compra">
+						</form:form>
+					</td>
 					<td class="numeric-cell">${carrinho.total}</td>
 					<td></td>
 				</tr>
