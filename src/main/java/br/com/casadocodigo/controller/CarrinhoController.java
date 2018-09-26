@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/carrinho")
@@ -35,6 +36,16 @@ public class CarrinhoController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView itens(){
         return new ModelAndView("/carrinho/itens");
+    }
+
+    @RequestMapping(value = "/remover")
+    public ModelAndView remover(Integer produtoId, TipoPreco tipoPreco, RedirectAttributes redirectAttributes){
+        carrinho.remover(produtoId, tipoPreco);
+
+        ModelAndView modelAndView = new ModelAndView("redirect:/carrinho");
+        redirectAttributes.addFlashAttribute("sucesso", "Produto removido do carrinho com sucesso!");
+
+        return modelAndView;
     }
 
     private CarrinhoItem criaItem(Integer produtoId, TipoPreco tipoPreco) {

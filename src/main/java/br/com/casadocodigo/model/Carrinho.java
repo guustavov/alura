@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 @Component
@@ -46,5 +47,12 @@ public class Carrinho implements Serializable{
         }
 
         return total;
+    }
+
+    public void remover(Integer produtoId, TipoPreco tipoPreco) {
+        Produto produto = new Produto();
+        produto.setId(produtoId);
+
+        this.itens.remove(new CarrinhoItem(produto, tipoPreco));
     }
 }
