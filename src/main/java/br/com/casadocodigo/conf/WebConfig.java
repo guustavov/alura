@@ -36,7 +36,8 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 @EnableWebMvc
 @EnableCaching
-@ComponentScan(basePackageClasses = {HomeController.class, ProdutoDAO.class, FileSaver.class, Carrinho.class})
+//@ComponentScan(basePackageClasses = {HomeController.class, ProdutoDAO.class, FileSaver.class, Carrinho.class})
+@ComponentScan(basePackages = {"br.com.casadocodigo"})
 public class WebConfig extends WebMvcConfigurerAdapter{
 
     @Bean

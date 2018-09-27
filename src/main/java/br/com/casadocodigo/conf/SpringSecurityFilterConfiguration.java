@@ -1,4 +1,6 @@
 package br.com.casadocodigo.conf;
 
-public class SpringSecurityFilterConfiguration {
+import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
+
+public class SpringSecurityFilterConfiguration extends AbstractSecurityWebApplicationInitializer{
 }

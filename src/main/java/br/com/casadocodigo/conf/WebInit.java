@@ -13,11 +13,15 @@ import javax.servlet.ServletRegistration;
 public class WebInit extends AbstractAnnotationConfigDispatcherServletInitializer{
 
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[] {RootConfig.class};
+        return new Class[] {RootConfig.class,
+                WebConfig.class,
+                JPAConfig.class,
+                FileSaver.class,
+                SecurityConfiguration.class};
     }
 
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[] {WebConfig.class, JPAConfig.class, FileSaver.class};
+        return new Class[] {};
     }
 
     protected String[] getServletMappings() {
