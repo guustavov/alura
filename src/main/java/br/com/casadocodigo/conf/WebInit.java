@@ -30,11 +30,9 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
 
     @Override
     protected Filter[] getServletFilters() {
-        CharacterEncodingFilter encondingFilter = new CharacterEncodingFilter();
-        encondingFilter.setEncoding("UTF-8");
-        encondingFilter.setForceEncoding(true);
-
-        return new Filter[] {encondingFilter};
+        CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
+        encodingFilter.setEncoding("UTF-8");
+        return new Filter[] {encodingFilter};
     }
 
     @Override
