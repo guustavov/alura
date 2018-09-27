@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
 <html>
 <head>
@@ -49,6 +50,19 @@
                         <a href="${s:mvcUrl('PC#form').build()}">
                             Cadastro de Produtos
                         </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <a href="#">
+                            <security:authentication
+                                    property="principal"
+                                    var="usuario" />
+                                ${usuario.username }
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<c:url value="/logout" />">Sair</a></span>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
