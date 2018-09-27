@@ -12,7 +12,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Livros de Java, SOA, Android, iPhone, Ruby on Rails e muito mais - Casa do Código</title>
+<title>Carrinho de Compras - Casa do Código</title>
 
 <link rel="icon" href="//cdn.shopify.com/s/files/1/0155/7645/t/177/assets/favicon.ico?11981592617154272979" type="image/ico" />
 <link href="https://plus.googlecom/108540024862647200608" rel="publisher" />
@@ -95,10 +95,10 @@
 						</td>
 						<td class="numeric-cell">${carrinho.getTotal(item)}</td>
 						<td class="remove-item">
-							<form action="${s:mvcUrl('CC#remover').arg(0,item.produto.id).arg(1,item.tipoPreco).build()}" method="POST">
+							<form:form servletRelativeAction="${s:mvcUrl('CC#remover').arg(0,item.produto.id).arg(1,item.tipoPreco).build()}" method="POST">
 								<input type="image" src="${contextPath}resources/imagens/excluir.png"
 									   alt="Excluir" title="Excluir" />
-							</form>
+							</form:form>
 						</td>
 					</tr>
 				</c:forEach>
@@ -106,7 +106,7 @@
 			<tfoot>
 				<tr>
 					<td colspan="3">
-						<form:form action="${s:mvcUrl('PC#finalizar').build()}" method="post">
+						<form:form servletRelativeAction="${s:mvcUrl('PC#finalizar').build()}" method="post">
 							<input type="submit" class="checkout" name="checkout" value="Finalizar compra">
 						</form:form>
 					</td>
