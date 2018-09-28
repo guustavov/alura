@@ -19,8 +19,16 @@
             <div id="header-content">
                 <nav id="main-nav">
                     <ul class="clearfix">
-                        <li><a href="${s:mvcUrl('CC#itens').build()}" rel="nofollow"><fmt:message key="menu.carrinho"></fmt:message> (${carrinho.quantidade})</a></li>
+                        <li>
+                            <a href="${s:mvcUrl('CC#itens').build()}" rel="nofollow">
+                                <fmt:message key="menu.carrinho">
+                                    <fmt:param value="${carrinho.quantidade}" />
+                                </fmt:message>
+                            </a>
+                        </li>
                         <li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow"><fmt:message key="menu.sobre"></fmt:message></a></li>
+                        <li><a href="?locale=pt_BR" rel="nofollow"><fmt:message key="menu.pt"></fmt:message></a></li>
+                        <li><a href="?locale=en_US" rel="nofollow"><fmt:message key="menu.en"></fmt:message></a></li>
                     </ul>
                 </nav>
             </div>
