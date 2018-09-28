@@ -2,6 +2,7 @@
 
 <%@ attribute name="titulo" required="true" %>
 <%@ attribute name="bodyClass" required="false" %>
+<%@ attribute name="extraScripts" fragment="true" %>
 
 <c:url value="/" var="contextPath" />
 
@@ -34,6 +35,8 @@
 <%@ include file="/WEB-INF/views/includes/header.jsp" %>
 
 <jsp:doBody />
+
+<jsp:invoke fragment="extraScripts"></jsp:invoke>
 
 <%@ include file="/WEB-INF/views/includes/footer.jsp" %>
 
