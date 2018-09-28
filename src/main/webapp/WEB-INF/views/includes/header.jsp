@@ -19,7 +19,7 @@
                 <nav id="main-nav">
                     <ul class="clearfix">
                         <li><a href="${s:mvcUrl('CC#itens').build()}" rel="nofollow">Carrinho (${carrinho.quantidade})</a></li>
-                        <li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre NÃ³s</a></li>
+                        <li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre Nós</a></li>
                         <li><a href="/pages/perguntas-frequentes" rel="nofollow">Perguntas Frequentes</a></li>
                     </ul>
                 </nav>
