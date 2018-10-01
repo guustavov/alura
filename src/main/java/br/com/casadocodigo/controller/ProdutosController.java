@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.persistence.NoResultException;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -75,6 +76,7 @@ public class ProdutosController {
     public ModelAndView detalhe(@PathVariable("id") Integer id){
         ModelAndView modelAndView = new ModelAndView("produtos/detalhe");
         Produto produto = produtoDao.find(id);
+
         modelAndView.addObject("produto", produto);
 
         return modelAndView;
