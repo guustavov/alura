@@ -2,12 +2,11 @@ package br.com.casadocodigo.conf;
 
 import br.com.casadocodigo.infra.FileSaver;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import javax.servlet.Filter;
-import javax.servlet.MultipartConfigElement;
-import javax.servlet.ServletRegistration;
+import javax.servlet.*;
 
 @Configuration
 public class WebInit extends AbstractAnnotationConfigDispatcherServletInitializer{
@@ -38,5 +37,12 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
     @Override
     protected void customizeRegistration(ServletRegistration.Dynamic registration) {
         registration.setMultipartConfig(new MultipartConfigElement(""));
+    }
+
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        super.onStartup(servletContext);
+        servletContext.addListener(RequestContextListener.class);
+        servletContext.setInitParameter("spring.profiles.active", "dev");
     }
 }
