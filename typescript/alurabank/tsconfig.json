@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "outDir": "app/js",
+        "noEmitOnError": true,          // em caso de erro de compilação, não gera arquivos .js
+        "noImplicitAny": true,          // obriga a tipagem de propriedades ou variáveis (remove tipagem implícita "any")
+        "removeComments": true,         // remove comentários dos arquivos resultantes da compilação (.js)
+        "module": "system",             // loader utilizado para carregamento de dependências
+        "strictNullChecks": true,       // não permite que null ou undefined seja atribuído
+        "experimentalDecorators": true  // habilita o recurso de "decorators"
+    },
+    "include": [
+        "app/ts/**/*"
+    ]
+}
