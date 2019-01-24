@@ -1,6 +1,6 @@
-package main.java.br.com.caelum.leilao.servico;
+package br.com.caelum.leilao.servico;
 
-import main.java.br.com.caelum.leilao.dominio.Lance;
+import br.com.caelum.leilao.dominio.Lance;
 
 import java.util.ArrayList;
 import java.util.List;

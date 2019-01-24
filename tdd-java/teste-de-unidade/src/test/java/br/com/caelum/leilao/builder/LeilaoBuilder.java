@@ -1,8 +1,8 @@
-package test.java.br.com.caelum.leilao.builder;
+package br.com.caelum.leilao.builder;
 
-import main.java.br.com.caelum.leilao.dominio.Lance;
-import main.java.br.com.caelum.leilao.dominio.Leilao;
-import main.java.br.com.caelum.leilao.dominio.Usuario;
+import br.com.caelum.leilao.dominio.Lance;
+import br.com.caelum.leilao.dominio.Leilao;
+import br.com.caelum.leilao.dominio.Usuario;
 
 public class LeilaoBuilder {
     private Leilao leilao;

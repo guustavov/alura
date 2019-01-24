@@ -1,4 +1,4 @@
-package main.java.br.com.caelum.leilao.dominio;
+package br.com.caelum.leilao.dominio;
 
 import org.omg.SendingContext.RunTime;
 

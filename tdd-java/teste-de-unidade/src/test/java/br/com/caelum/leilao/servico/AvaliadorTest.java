@@ -1,9 +1,8 @@
-package test.java.br.com.caelum.servico;
+package br.com.caelum.leilao.servico;
 
-import main.java.br.com.caelum.leilao.dominio.Lance;
-import main.java.br.com.caelum.leilao.dominio.Leilao;
-import main.java.br.com.caelum.leilao.dominio.Usuario;
-import main.java.br.com.caelum.leilao.servico.Avaliador;
+import br.com.caelum.leilao.dominio.Lance;
+import br.com.caelum.leilao.dominio.Leilao;
+import br.com.caelum.leilao.dominio.Usuario;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

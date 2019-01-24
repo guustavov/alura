@@ -1,4 +1,4 @@
-package test.java.br.com.caelum.servico;
+package br.com.caelum.leilao.servico;
 
 import main.java.br.com.caelum.leilao.servico.AnoBissexto;
 import org.junit.jupiter.api.BeforeEach;

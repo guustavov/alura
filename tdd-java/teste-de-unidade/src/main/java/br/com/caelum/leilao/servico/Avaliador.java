@@ -1,7 +1,7 @@
-package main.java.br.com.caelum.leilao.servico;
+package br.com.caelum.leilao.servico;
 
-import main.java.br.com.caelum.leilao.dominio.Lance;
-import main.java.br.com.caelum.leilao.dominio.Leilao;
+import br.com.caelum.leilao.dominio.Lance;
+import br.com.caelum.leilao.dominio.Leilao;
 
 import java.util.Comparator;
 import java.util.List;

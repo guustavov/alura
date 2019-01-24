@@ -1,13 +1,10 @@
-package test.java.br.com.caelum.leilao.dominio;
+package br.com.caelum.leilao.dominio;
 
-import main.java.br.com.caelum.leilao.dominio.Lance;
-import main.java.br.com.caelum.leilao.dominio.Leilao;
-import main.java.br.com.caelum.leilao.dominio.Usuario;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
-import test.java.br.com.caelum.leilao.builder.LeilaoBuilder;
+import br.com.caelum.leilao.builder.LeilaoBuilder;
 
 import java.util.List;
 
@@ -136,6 +133,8 @@ public class LeilaoTest {
         assertEquals(10, lances.size());
         assertEquals(1100.0, lances.get(9).getValor());
         assertEquals(jose, lances.get(9).getUsuario());
+
+
     }
 
     private Leilao leilaoComUsuarioImpossibilitadoDeDarLances(){
