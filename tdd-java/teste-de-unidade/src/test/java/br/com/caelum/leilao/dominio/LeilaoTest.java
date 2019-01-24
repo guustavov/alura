@@ -21,7 +21,7 @@ public class LeilaoTest {
 
     @BeforeEach
     void setUp(){
-        leilao = new Leilao("Ar Condicionado Cheiroso");
+        leilao = new Leilao("Ar Condicionado 9000");
         joao = new Usuario("João");
         jose = new Usuario("José");
     }
