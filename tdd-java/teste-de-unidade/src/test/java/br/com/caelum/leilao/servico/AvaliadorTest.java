@@ -1,5 +1,6 @@
 package br.com.caelum.leilao.servico;
 
+import br.com.caelum.leilao.builder.LeilaoBuilder;
 import br.com.caelum.leilao.dominio.Lance;
 import br.com.caelum.leilao.dominio.Leilao;
 import br.com.caelum.leilao.dominio.Usuario;
@@ -11,12 +12,15 @@ import org.junit.jupiter.api.function.Executable;
 
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasItems;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Teste unitário - Avaliador de Leilão")
 class AvaliadorTest {
     private Avaliador leiloeiro;
-    private Leilao leilao;
+    private LeilaoBuilder leilaoBuilder;
     private Usuario joao;
     private Usuario jose;
     private Usuario maria;
@@ -27,7 +31,7 @@ class AvaliadorTest {
         jose = new Usuario("José");
         maria = new Usuario("Maria");
 
-        leilao = new Leilao("Playstation 4 Novo");
+        leilaoBuilder = new LeilaoBuilder().leilaoDe("Playstation 4 Novo");
 
         leiloeiro = new Avaliador();
     }
@@ -39,34 +43,41 @@ class AvaliadorTest {
     @Test
     @DisplayName("deve retornar o maior lance existente")
     void maiorLance() {
-        leilao.propoe(new Lance(joao, 400.0));
-        leilao.propoe(new Lance(jose, 250.0));
+        Leilao leilao = leilaoBuilder
+            .lance(joao, 400.0)
+            .lance(jose, 250.0)
+            .build();
 
         leiloeiro.avalia(leilao);
 
         Double valorMaiorLance = leiloeiro.getMaiorLance().getValor();
-        assertEquals(400.0, valorMaiorLance);
+
+        assertThat(valorMaiorLance, equalTo(400.0));
     }
 
     @Test
     @DisplayName("deve retornar o menor lance existente")
     void menorLance() {
-        leilao.propoe(new Lance(joao, 400.0));
-        leilao.propoe(new Lance(jose, 250.0));
+        Leilao leilao = leilaoBuilder
+            .lance(joao, 400.0)
+            .lance(jose, 250.0)
+            .build();
 
         leiloeiro.avalia(leilao);
 
         Double valorMenorLance = leiloeiro.getMenorLance().getValor();
 
-        assertEquals(250.0, valorMenorLance);
+        assertThat(valorMenorLance, equalTo(250.0));
     }
 
     @Test
     @DisplayName("deve retornar a médio dos valores de lances")
     void valorMedioLances(){
-        leilao.propoe(new Lance(joao, 250.0));
-        leilao.propoe(new Lance(jose, 400.0));
-        leilao.propoe(new Lance(maria, 300.0));
+        Leilao leilao = leilaoBuilder
+            .lance(joao, 400.0)
+            .lance(jose, 250.0)
+            .lance(maria, 300.0)
+            .build();
 
         leiloeiro.avalia(leilao);
 
@@ -77,58 +88,71 @@ class AvaliadorTest {
                 .mapToDouble(Lance::getValor).average()
                 .orElseThrow(RuntimeException::new);
 
-        assertEquals(valorMedioEsperado, leiloeiro.getValorMedio());
+        assertThat(leiloeiro.getValorMedio(), equalTo(valorMedioEsperado));
     }
 
     @Test
     @DisplayName("deve suportar leilão com apenas um lance")
     void apenasUmLance(){
-        leilao.propoe(new Lance(joao, 400.0));
+        Leilao leilao = leilaoBuilder
+            .lance(joao, 400.0)
+            .build();
 
         leiloeiro.avalia(leilao);
 
-        assertEquals(400.0, leiloeiro.getMaiorLance().getValor());
-        assertEquals(400.0, leiloeiro.getMenorLance().getValor());
+        assertThat(leiloeiro.getMaiorLance().getValor(), equalTo(400.0));
+        assertThat(leiloeiro.getMenorLance().getValor(), equalTo(400.0));
     }
 
     @Test
     @DisplayName("deve retornar no máximo os três maiores lances")
     void tresMaioresLances(){
-        leilao.propoe(new Lance(joao, 400.0));
-        leilao.propoe(new Lance(maria, 100.0));
-        leilao.propoe(new Lance(joao, 200.0));
-        leilao.propoe(new Lance(maria, 300.0));
+        Leilao leilao = leilaoBuilder
+            .lance(joao, 400.0)
+            .lance(maria, 200.0)
+            .lance(joao, 100.0)
+            .lance(maria, 300.0)
+            .build();
 
         leiloeiro.avalia(leilao);
 
         List<Lance> maioresLances = leiloeiro.getMaioresLances();
 
-        assertEquals(3, maioresLances.size());
-        assertEquals(400.00, maioresLances.get(0).getValor());
-        assertEquals(300.00, maioresLances.get(1).getValor());
-        assertEquals(200.00, maioresLances.get(2).getValor());
+        assertThat(maioresLances.size(), equalTo(3));
+        assertThat(maioresLances, hasItems(
+                new Lance(joao, 400.0),
+                new Lance(maria, 300.0),
+                new Lance(maria, 200.0)
+        ));
     }
 
 
     @Test
     @DisplayName("deve retornar os maiores lances, mesmo que existam menos do que três lances")
     void maioresLances(){
-        leilao.propoe(new Lance(joao, 400.0));
-        leilao.propoe(new Lance(maria, 100.0));
+        Leilao leilao = leilaoBuilder
+                .lance(joao, 400.0)
+                .lance(maria, 100.0)
+                .build();
 
         leiloeiro.avalia(leilao);
 
         List<Lance> maioresLances = leiloeiro.getMaioresLances();
 
-        assertEquals(2, maioresLances.size());
-        assertEquals(400.00, maioresLances.get(0).getValor());
-        assertEquals(100.00, maioresLances.get(1).getValor());
+        assertThat(maioresLances.size(), equalTo(2));
+        assertThat(maioresLances, hasItems(
+                new Lance(joao, 400.0),
+                new Lance(maria, 100.0)
+        ));
     }
 
     @Test
     @DisplayName("deve disparar exceção quando não houverem lances")
     void leilaoSemLances(){
+        Leilao leilao = leilaoBuilder.build();
+
         Executable avaliacaoDeLeilaoSemLances = () -> leiloeiro.avalia(leilao);
+
         assertThrows(RuntimeException.class, avaliacaoDeLeilaoSemLances, "Não existem lances neste leilão");
     }
 
