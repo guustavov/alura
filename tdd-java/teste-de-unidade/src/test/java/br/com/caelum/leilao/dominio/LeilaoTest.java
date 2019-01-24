@@ -8,6 +8,8 @@ import br.com.caelum.leilao.builder.LeilaoBuilder;
 
 import java.util.List;
 
+import static br.com.caelum.leilao.matchers.LeilaoMatcher.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -34,7 +36,8 @@ public class LeilaoTest {
         List<Lance> lances = leilao.getLances();
 
         assertEquals(1, lances.size());
-        assertEquals(200.0, lances.get(0).getValor());
+        //exemplo de custom matcher
+        assertThat(leilao, possuiLance(new Lance(joao, 200.0)));
     }
 
     @Test
