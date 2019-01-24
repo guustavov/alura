@@ -1,4 +1,4 @@
-package br.com.caelum.leilao.dominio;
+package main.java.br.com.caelum.leilao.dominio;
 
 public class Usuario {
 
